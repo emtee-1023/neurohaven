@@ -34,10 +34,12 @@ Route::get('/calendly/authorize', [CalendlyOAuthController::class, 'redirectToCa
 Route::get('/calendly/callback', [CalendlyOAuthController::class, 'handleCallback']);
 Route::get('/calendly/events', [CalendlyOAuthController::class, 'showEvents']);
 Route::get('/book-session', [CalendlyOAuthController::class, 'showBookingPage'])->name('bookSession');
-// Route::post('/calendly/webhook', [CalendlyOAuthController::class, 'handleWebhook'])->name('calendly.webhook');
 
 Route::get('/pay/{booking}', [PesapalPaymentController::class, 'initiatePayment'])->name('pesapal.pay');
+Route::post('/pay/{booking}/checkout', [PesapalPaymentController::class, 'checkout'])->name('pesapal.checkout');
 Route::get('/pesapal/callback', [PesapalPaymentController::class, 'handleCallback'])->name('pesapal.callback');
+
+
 Route::get('/booking/confirmed/{booking}', function (\App\Models\Booking $booking) {
     return view('booking.confirmed', compact('booking'));
 })->name('booking.confirmed');
@@ -58,5 +60,7 @@ Route::get('/api/booking-by-event', function (Request $request) {
     $booking = Booking::where('calendly_event_id', $event_id)->latest()->first();
     return ['booking_id' => $booking ? $booking->id : null];
 });
+
+Route::get('/booking/fetch-latest', [App\Http\Controllers\BookingController::class, 'fetchLatest']);
 
 require __DIR__ . '/auth.php';
