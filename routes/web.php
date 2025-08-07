@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', ['services' => Functions::getServices(), 'testimonials' => Functions::getTestimonials()]);
 })->name('home');
 
 Route::get('/home', function () {
