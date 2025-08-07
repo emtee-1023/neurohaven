@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'Africa/Nairobi',
+'timezone' => env('APP_TIMEZONE', 'Africa/Nairobi'),
 
     /*
     |--------------------------------------------------------------------------

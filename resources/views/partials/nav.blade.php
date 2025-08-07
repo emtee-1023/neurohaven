@@ -23,8 +23,8 @@
 
         <a href="index" class="logo d-flex align-items-center me-auto">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">NeuroHaven</h1>
+            <img src="assets/img/logo.jpg" alt="">
+            {{-- <h1 class="sitename">NeuroHaven</h1> --}}
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -55,7 +55,7 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="{{ route('bookSession') }}">Consult</a>
+        <a class="btn-getstarted" href="{{ route('bookSession') }}">Book Session</a>
 
     </div>
 </header>
