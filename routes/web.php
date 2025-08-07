@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Functions;
 use App\Http\Controllers\CalendlyOauthController;
 use App\Http\Controllers\PesapalPaymentController;
+use App\Http\Controllers\BookingController;   
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
@@ -17,6 +18,15 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home', ['services' => Functions::getServices(), 'testimonials' => Functions::getTestimonials()]);
 })->name('landing');
+
+Route::resource('blog', \App\Http\Controllers\BlogController::class)
+    ->only(['index', 'show'])
+    ->names([
+        'index' => 'blog',
+        'show' => 'blog.show'
+    ]);
+
+Route::get('/bookings', [BookingController::class, 'getSessions'])->middleware(['auth', 'verified'])->name('bookings.list');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

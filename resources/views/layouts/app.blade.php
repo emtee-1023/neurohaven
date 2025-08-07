@@ -37,7 +37,6 @@
 
 
     <footer id="footer" class="footer">
-
         <div class="footer-newsletter">
             <div class="container">
                 <div class="row justify-content-center text-center">

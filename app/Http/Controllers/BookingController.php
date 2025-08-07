@@ -40,4 +40,10 @@ class BookingController extends Controller
         // Redirect to payment or confirmation
         return redirect()->route('pesapal.pay', ['booking' => $booking->id]);
     }
+
+    public function getSessions()
+    {
+        $sessions = Booking::all();
+        return view('booking.admin-session-list', ['sessions' => $sessions]);
+    }
 }
