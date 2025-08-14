@@ -1,42 +1,68 @@
 @extends('layouts.app')
+@section('title', 'Neurohaven | Blog')
 @section('content')
-    <div class="container">
-        <h1>Blogs</h1>
-        <a href="{{ route('admin.blogs.create') }}" class="btn btn-success mb-3">Add New Blog</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Author</th>
-                    <th>Published At</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($blogs as $blog)
-                    <tr>
-                        <td>{{ $blog->title }}</td>
-                        <td>{{ ucfirst($blog->status) }}</td>
-                        <td>{{ $blog->author->name ?? 'N/A' }}</td>
-                        <td>{{ $blog->published_at ? $blog->published_at->format('Y-m-d') : '-' }}</td>
-                        <td>
-                            <a href="{{ route('admin.blogs.edit', $blog) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('admin.blogs.destroy', $blog) }}" method="POST"
-                                style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Delete this blog?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5">No blogs found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+    <div class="container py-5">
+        @include('partials.nav')
+        <!-- Page Title -->
+        <div class="page-title">
+            <div class="container d-lg-flex justify-content-between align-items-center">
+                <h1 class="mb-2 mb-lg-0">Blog</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="{{ route('landing') }}">Home</a></li>
+                        <li class="current">Blog</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <div class="row">
+            @forelse($blogs as $blog)
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <!-- Blog Image -->
+                        @if ($blog->featured_image)
+                            <img src="{{ asset('storage/' . $blog->featured_image) }}" class="w-100 card-img-top"
+                                style="max-height: 500px; object-fit: cover;" alt="{{ $blog->title }}">
+                        @else
+                            <img src="{{ asset('storage/blog_images/default-blog.jpg') }}" class="w-100 card-img-top"
+                                style="max-height: 500px; object-fit: cover;" alt="Default image">
+                        @endif
+
+                        <!-- Blog Content -->
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">
+                                <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none text-dark">
+                                    {{ $blog->title }}
+                                </a>
+                            </h5>
+
+                            <!-- Meta Info -->
+                            <p class="text-muted small mb-2">
+                                <i class="bi bi-calendar"></i>
+                                {{ $blog->published_at ? \Carbon\Carbon::parse($blog->published_at)->format('M j, Y') : '' }}
+                            </p>
+
+                            <!-- Excerpt -->
+                            <p class="card-text">
+                                {{ Str::limit(strip_tags($blog->content), 120) }}
+                            </p>
+
+                            <!-- Read More -->
+                            <a href="{{ route('blog.show', $blog->slug) }}" class="btn btn-success">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">
+                    <p>No blog posts found.</p>
+                </div>
+            @endforelse
+        </div>
+
+        <div class="mt-4">
+            {{ $blogs->links() }}
+        </div>
     </div>
 @endsection

@@ -26,6 +26,11 @@ Route::resource('blog', \App\Http\Controllers\BlogController::class)
         'show' => 'blog.show'
     ]);
 
+// Public blog listing
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+// Public blog detail
+Route::get('/blog/{slug}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+
 Route::get('/bookings', [BookingController::class, 'getSessions'])->middleware(['auth', 'verified'])->name('bookings.list');
 
 Route::view('dashboard', 'dashboard')

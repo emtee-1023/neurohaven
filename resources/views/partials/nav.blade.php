@@ -33,6 +33,7 @@
                 <li><a href="home#about">About</a></li>
                 <li><a href="home#services">Services</a></li>
                 <li><a href="home#testimonials">Testimonials</a></li>
+                <li><a href="{{ route('blog') }}">Blog</a></li>
                 <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="#">Dropdown 1</a></li>

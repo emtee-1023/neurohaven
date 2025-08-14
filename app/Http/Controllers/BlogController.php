@@ -7,13 +7,11 @@ use App\Models\Blog;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Public blog listing
     public function index()
     {
-        $blogs = Blog::with('author')->latest()->get();
-        return view('blog.admin-index', compact('blogs'));
+        $blogs = Blog::whereNotNull('published_at')->orderByDesc('published_at')->paginate(10);
+        return view('blog.index', compact('blogs'));
     }
 
     /**
@@ -32,12 +30,11 @@ class BlogController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // Public blog detail
+    public function show($slug)
     {
-        //
+        $blog = Blog::where('slug', $slug)->whereNotNull('published_at')->firstOrFail();
+        return view('blog.show', compact('blog'));
     }
 
     /**
