@@ -26,6 +26,31 @@
     <link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <!-- DataTables CSS (shared) -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <style>
+        body.dark-mode .dataTables_wrapper,
+        body.dark-mode .table,
+        body.dark-mode .table-striped,
+        body.dark-mode .table-bordered {
+            background-color: #18181b !important;
+            color: #f3f4f6 !important;
+        }
+
+        body.dark-mode th,
+        body.dark-mode td {
+            background-color: #18181b !important;
+            color: #f3f4f6 !important;
+        }
+
+        body.dark-mode .dataTables_length,
+        body.dark-mode .dataTables_filter,
+        body.dark-mode .dataTables_info,
+        body.dark-mode .dataTables_paginate {
+            color: #f3f4f6 !important;
+        }
+    </style>
+
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @livewireStyles
@@ -126,13 +151,27 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('table[id$="-table"], table.display').each(function() {
+                if (!$.fn.DataTable.isDataTable(this)) {
+                    $(this).DataTable({
+                        responsive: true,
+                        pageLength: 10,
+                        order: [
+                            [2, 'desc']
+                        ]
+                    });
+                }
+            });
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
 
     <!-- JS -->
     <script src="{{ asset('js/main.js') }}"></script>

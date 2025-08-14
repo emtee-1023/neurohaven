@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Models\Booking;
 
 class BookingController extends Controller
@@ -27,15 +28,19 @@ class BookingController extends Controller
         $invitee = $inviteeResponse->json('collection.0');
 
         // Store booking in DB
+        $sessionTimeEat = isset($event['start_time'])
+            ? \Carbon\Carbon::parse($event['start_time'])->setTimezone('Africa/Nairobi')
+            : null;
         $booking = Booking::create([
             'name' => $invitee['name'] ?? 'Unknown',
             'email' => $invitee['email'] ?? null,
             'phone' => $invitee['text_reminder_number'] ?? null,
             'calendly_event_id' => $event['uri'] ?? $eventUri,
-            'session_time' => $event['start_time'] ?? null,
+            'session_time' => $sessionTimeEat,
             'amount' => 1000,
             'payment_status' => 'pending',
         ]);
+
 
         // Redirect to payment or confirmation
         return redirect()->route('pesapal.pay', ['booking' => $booking->id]);

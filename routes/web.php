@@ -8,6 +8,7 @@ use App\Models\Functions;
 use App\Http\Controllers\CalendlyOauthController;
 use App\Http\Controllers\PesapalPaymentController;
 use App\Http\Controllers\BookingController;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 

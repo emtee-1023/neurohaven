@@ -32,7 +32,6 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Author</th>
                         <th>Status</th>
                         <th>Published On</th>
                         <th>Edit</th>
@@ -43,7 +42,6 @@
                     @foreach ($blogs as $blog)
                         <tr>
                             <td>{{ $blog->title }}</td>
-                            <td>{{ $blog->author->name ?? 'N/A' }}</td>
                             <td>{{ ucfirst($blog->status) }}</td>
                             <td>{{ $blog->published_at ? \Carbon\Carbon::parse($blog->published_at)->format('D d M Y') : '-' }}
                             </td>

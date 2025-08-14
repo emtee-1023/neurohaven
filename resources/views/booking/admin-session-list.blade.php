@@ -4,7 +4,8 @@
             {{-- Number of Upcoming Requests --}}
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col items-center justify-center p-4">
-                <div class="text-3xl font-bold text-accent">{{ $sessions->where('date', '>=', now())->count() }}</div>
+                <div class="text-3xl font-bold text-accent">{{ $sessions->where('session_time', '>=', now())->count() }}
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-300 mt-2">Upcoming Requests</div>
             </div>
 
@@ -12,7 +13,8 @@
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col items-center justify-center p-4">
                 <div class="text-3xl font-bold text-green-600">
-                    {{ $sessions->where('date', '>=', now())->where('paid', true)->count() }}</div>
+                    {{ $sessions->where('session_time', '>=', now())->where('payment_status', 'paid')->count() }}
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-300 mt-2">Upcoming Paid Requests</div>
             </div>
 
@@ -20,7 +22,8 @@
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col items-center justify-center p-4">
                 <div class="text-3xl font-bold text-red-600">
-                    {{ $sessions->where('date', '>=', now())->where('paid', false)->count() }}</div>
+                    {{ $sessions->where('session_time', '>=', now())->whereIn('payment_status', ['pending', 'failed'])->count() }}
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-300 mt-2">Unpaid Upcoming Requests</div>
             </div>
         </div>
@@ -38,26 +41,21 @@
                         <th>Email</th>
                         <th>Session Time</th>
                         <th>Payment Status</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($sessions as $session)
                         <tr>
                             <td>{{ $session->name }}</td>
-                            <td>{{ $session->email }}</td>
+                            <td><a href="mailto:{{ $session->email }}"
+                                    class="text-blue-600 hover:underline">{{ $session->email }}</a></td>
                             <td>
                                 @php
-                                    $dt = \Carbon\Carbon::parse($session->date);
+                                    $dt = \Carbon\Carbon::parse($session->session_time);
                                 @endphp
                                 {{ $dt->format('D d M \a\t H:i\h') }}
                             </td>
                             <td>{{ $session->payment_status }}</td>
-                            <td>
-                                {{-- <a href="{{ route('sessions.show', $session->id) }}"
-                                    class="text-blue-600 hover:underline">View</a> --}}
-                                view
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
