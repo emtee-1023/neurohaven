@@ -22,7 +22,7 @@
                     :current="request()->routeIs('bookings.list')" wire:navigate>{{ __('Bookings') }}
                 </flux:navlist.item>
 
-                <flux:navlist.item class="mt-3" icon="book-open-text" :href="route('blog')"
+                <flux:navlist.item class="mt-3" icon="book-open-text" :href="route('admin.blogs.index')"
                     :current="request()->routeIs('blog')" wire:navigate>{{ __('Blog') }}</flux:navlist.item>
 
             </flux:navlist.group>

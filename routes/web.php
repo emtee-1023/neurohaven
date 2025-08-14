@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Functions;
 use App\Http\Controllers\CalendlyOauthController;
 use App\Http\Controllers\PesapalPaymentController;
-use App\Http\Controllers\BookingController;   
+use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 
@@ -74,3 +74,10 @@ Route::get('/api/booking-by-event', function (Request $request) {
 Route::get('/booking/fetch-latest', [App\Http\Controllers\BookingController::class, 'fetchLatest']);
 
 require __DIR__ . '/auth.php';
+
+Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blogs.index');
+    Route::resource('blogs', App\Http\Controllers\Admin\BlogController::class)
+        ->except(['index', 'show'])
+        ->names('admin.blogs');
+});
