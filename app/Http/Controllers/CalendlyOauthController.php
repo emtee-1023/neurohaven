@@ -82,7 +82,8 @@ class CalendlyOAuthController extends Controller
     public function showBookingPage()
     {
         // Example: fixed event URI
-        $eventUri = 'https://calendly.com/devsolutions/neurohaven-preview'; // change to your actual event URL
+        //$eventUri = 'https://calendly.com/devsolutions/neurohaven-preview'; // change to your actual event URL
+        $eventUri = 'https://calendly.com/neurohaven-info/30min';
 
         // Extract username and event_slug from the URL
         $parsed = parse_url($eventUri);
