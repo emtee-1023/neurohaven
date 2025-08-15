@@ -154,26 +154,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('table[id$="-table"], table.display').each(function() {
-                if (!$.fn.DataTable.isDataTable(this)) {
-                    $(this).DataTable({
-                        responsive: true,
-                        pageLength: 10,
-                        order: [
-                            [2, 'desc']
-                        ]
-                    });
-                }
-            });
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark-mode');
-            }
-        });
-    </script>
-
-    <!-- JS -->
+    <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     @livewireScripts
 </body>
