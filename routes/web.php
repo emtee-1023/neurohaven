@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Livewire\Settings\Appearance;
@@ -8,9 +9,12 @@ use App\Models\Functions;
 use App\Http\Controllers\CalendlyOauthController;
 use App\Http\Controllers\PesapalPaymentController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\NewsletterSubmissionsController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+
+
 
 Route::get('/', function () {
     return view('home', ['services' => Functions::getServices(), 'testimonials' => Functions::getTestimonials()]);
@@ -79,11 +83,21 @@ Route::get('/api/booking-by-event', function (Request $request) {
 
 Route::get('/booking/fetch-latest', [App\Http\Controllers\BookingController::class, 'fetchLatest']);
 
+Route::post('/newsletter/subscribe', [NewsletterSubmissionsController::class, 'store'])->name('newsletter.subscribe');
+
+Route::post('/contact/submit', [App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
+
 require __DIR__ . '/auth.php';
+
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blogs.index');
     Route::resource('blogs', App\Http\Controllers\Admin\BlogController::class)
         ->except(['index', 'show'])
         ->names('admin.blogs');
+
+    Route::get('newsletter', function () {
+        $submissions = \App\Models\NewsletterSubmissions::orderBy('created_at', 'desc')->get();
+        return view('admin.newsletter.index', compact('submissions'));
+    })->name('admin.newsletter.index');
 });

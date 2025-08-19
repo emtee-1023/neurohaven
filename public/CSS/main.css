@@ -664,7 +664,8 @@ h6 {
     font-family: var(--heading-font);
 }
 
-.footer .footer-contact p {
+.footer .footer-contact p,
+.footer .footer-contact a {
     margin-bottom: 5px;
 }
 

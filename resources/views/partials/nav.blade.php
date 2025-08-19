@@ -12,7 +12,7 @@
                 </form>
             </li>
         @else
-            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="{{ route('login') }}">Admin Login</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
         @endauth
     </ul>
@@ -23,7 +23,7 @@
 
         <a href="index" class="logo d-flex align-items-center me-auto">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <img src="assets/img/logo.jpg" alt="">
+            <img style="width: 100px" src="assets/img/logo.jpg" alt="">
             {{-- <h1 class="sitename">NeuroHaven</h1> --}}
         </a>
 

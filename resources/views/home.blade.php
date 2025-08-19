@@ -8,7 +8,7 @@
 
             <a href="index" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="assets/img/logo.jpg" alt="">
+                <img src="assets/img/logo.jpg" alt="" style="width: 100px">
                 {{-- <h1 class="sitename">NeuroHaven</h1> --}}
             </a>
 
@@ -19,22 +19,22 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                                                                                                        <ul>
-                                                                                                                            <li><a href="#">Dropdown 1</a></li>
-                                                                                                                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                                                                                                                <ul>
-                                                                                                                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                                                                                                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                                                                                                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                                                                                                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                                                                                                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                                                                                                                </ul>
-                                                                                                                            </li>
-                                                                                                                            <li><a href="#">Dropdown 2</a></li>
-                                                                                                                            <li><a href="#">Dropdown 3</a></li>
-                                                                                                                            <li><a href="#">Dropdown 4</a></li>
-                                                                                                                        </ul>
-                                                                                                                    </li> -->
+                                                                                                                                    <ul>
+                                                                                                                                        <li><a href="#">Dropdown 1</a></li>
+                                                                                                                                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                                                                                                                            <ul>
+                                                                                                                                                <li><a href="#">Deep Dropdown 1</a></li>
+                                                                                                                                                <li><a href="#">Deep Dropdown 2</a></li>
+                                                                                                                                                <li><a href="#">Deep Dropdown 3</a></li>
+                                                                                                                                                <li><a href="#">Deep Dropdown 4</a></li>
+                                                                                                                                                <li><a href="#">Deep Dropdown 5</a></li>
+                                                                                                                                            </ul>
+                                                                                                                                        </li>
+                                                                                                                                        <li><a href="#">Dropdown 2</a></li>
+                                                                                                                                        <li><a href="#">Dropdown 3</a></li>
+                                                                                                                                        <li><a href="#">Dropdown 4</a></li>
+                                                                                                                                    </ul>
+                                                                                                                                </li> -->
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="{{ route('blog') }}">Blog</a></li>
                 </ul>
@@ -626,7 +626,7 @@
                                 <i class="bi bi-envelope flex-shrink-0"></i>
                                 <div>
                                     <h3>Email Us</h3>
-                                    <p>info@example.com</p>
+                                    <p>info@neurohaven.africa</p>
                                 </div>
                             </div><!-- End Info Item -->
 
@@ -635,8 +635,9 @@
                     </div>
 
                     <div class="col-lg-7">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="200">
+                        <form action="{{ route('contact.submit') }}" method="POST" class="php-email-form"
+                            data-aos="fade-up" data-aos-delay="200">
+                            @csrf
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
@@ -663,10 +664,6 @@
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
                                     <button type="submit">Send Message</button>
                                 </div>
 

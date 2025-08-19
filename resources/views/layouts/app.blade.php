@@ -54,6 +54,9 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @livewireStyles
+
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -69,12 +72,18 @@
                         <h4>Stay Connected with NeuroHaven</h4>
                         <p>Subscribe to our newsletter for expert tips, resources, and updates on college planning for
                             students with learning differences.</p>
-                        <form action="forms/newsletter.php" method="post" class="php-email-form">
-                            <div class="newsletter-form"><input type="email" name="email"
-                                    placeholder="Your Email"><input type="submit" value="Subscribe"></div>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Thank you for subscribing!</div>
+                        <form action="{{ route('newsletter.subscribe') }}" method="POST" class="php-email-form">
+                            @csrf
+                            <div class="newsletter-form">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                                <input type="submit" value="Subscribe">
+                            </div>
+                            @if (session('success'))
+                                <div class="sent-message">{{ session('success') }}</div>
+                            @endif
+                            @if ($errors->has('email'))
+                                <div class="error-message">{{ $errors->first('email') }}</div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -89,8 +98,10 @@
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Empowering students for a successful transition to college.</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p class="mt-3"><strong>Phone:</strong> <span>+254 000 000 000</span></p>
+                        <p><strong>Email:</strong> <a style="font-size: small"
+                                href="mailto:info@neurohaven.africa">info@neurohaven.africa</a>
+                        </p>
                     </div>
                 </div>
 
@@ -157,6 +168,34 @@
     <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            @if (session('Success'))
+                toastr.success("{{ session('Success') }}");
+            @endif
+            @if ($errors->any())
+                toastr.error("{{ implode(' ', $errors->all()) }}");
+            @endif
+        });
+    </script>
     @livewireScripts
 </body>
 
