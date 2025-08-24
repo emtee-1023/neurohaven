@@ -19,22 +19,22 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                                                                                                                    <ul>
-                                                                                                                                        <li><a href="#">Dropdown 1</a></li>
-                                                                                                                                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                                                                                                                            <ul>
-                                                                                                                                                <li><a href="#">Deep Dropdown 1</a></li>
-                                                                                                                                                <li><a href="#">Deep Dropdown 2</a></li>
-                                                                                                                                                <li><a href="#">Deep Dropdown 3</a></li>
-                                                                                                                                                <li><a href="#">Deep Dropdown 4</a></li>
-                                                                                                                                                <li><a href="#">Deep Dropdown 5</a></li>
-                                                                                                                                            </ul>
-                                                                                                                                        </li>
-                                                                                                                                        <li><a href="#">Dropdown 2</a></li>
-                                                                                                                                        <li><a href="#">Dropdown 3</a></li>
-                                                                                                                                        <li><a href="#">Dropdown 4</a></li>
-                                                                                                                                    </ul>
-                                                                                                                                </li> -->
+                                                                                                                                                                                                    <ul>
+                                                                                                                                                                                                        <li><a href="#">Dropdown 1</a></li>
+                                                                                                                                                                                                        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                                                                                                                                                                                            <ul>
+                                                                                                                                                                                                                <li><a href="#">Deep Dropdown 1</a></li>
+                                                                                                                                                                                                                <li><a href="#">Deep Dropdown 2</a></li>
+                                                                                                                                                                                                                <li><a href="#">Deep Dropdown 3</a></li>
+                                                                                                                                                                                                                <li><a href="#">Deep Dropdown 4</a></li>
+                                                                                                                                                                                                                <li><a href="#">Deep Dropdown 5</a></li>
+                                                                                                                                                                                                            </ul>
+                                                                                                                                                                                                        </li>
+                                                                                                                                                                                                        <li><a href="#">Dropdown 2</a></li>
+                                                                                                                                                                                                        <li><a href="#">Dropdown 3</a></li>
+                                                                                                                                                                                                        <li><a href="#">Dropdown 4</a></li>
+                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                </li> -->
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="{{ route('blog') }}">Blog</a></li>
                 </ul>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="assets/img/professor.svg" class="img-fluid animated" alt="">
+                        <img src="assets/img/hero-img.jpg" class="img-fluid animated" alt="">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
 
                 <div class="row gy-4">
                     <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/about.png" class="img-fluid" alt="">
+                        <img src="assets/img/img2.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
                         <h3>Our Personalized Approach</h3>
@@ -615,10 +615,17 @@
                             </div><!-- End Info Item -->
 
                             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                                <i class="bi bi-telephone flex-shrink-0"></i>
+                                <a href="https://wa.me/34663862657?text=Hello%2C%20I%20would%20like%20to%20make%20an%20inquiry%20on%20Neurohaven"
+                                    target="_blank">
+                                    <i class="bi bi-whatsapp flex-shrink-0"></i>
+                                </a>
                                 <div>
-                                    <h3>Call Us</h3>
-                                    <p>+254 700 000 000</p>
+                                    <h3>Chat on Whatsapp</h3>
+                                    <a href="https://wa.me/34663862657?text=Hello%2C%20I%20would%20like%20to%20make%20an%20inquiry%20on%20Neurohaven"
+                                        target="_blank">
+                                        <p>Open Chat</p>
+                                    </a>
+
                                 </div>
                             </div><!-- End Info Item -->
 

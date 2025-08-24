@@ -98,7 +98,12 @@
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Empowering students for a successful transition to college.</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+254 000 000 000</span></p>
+                        <p class="mt-3"><strong>Whatsapp:</strong> <span><a
+                                    style="font-size: small; text-decoration: underline; color: blue;"
+                                    href="https://wa.me/34663862657?text=Hello%2C%20I%20would%20like%20to%20make%20an%20inquiry%20on%20Neurohaven"
+                                    target="_blank">
+                                    Open Chat
+                                </a></span></p>
                         <p><strong>Email:</strong> <a style="font-size: small"
                                 href="mailto:info@neurohaven.africa">info@neurohaven.africa</a>
                         </p>
@@ -134,9 +139,13 @@
                     <h4>Connect with Us</h4>
                     <p>Follow NeuroHaven for the latest insights and resources on college planning.</p>
                     <div class="social-links d-flex">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="https://wa.me/34663862657?text=Hello%2C%20I%20would%20like%20to%20make%20an%20inquiry%20on%20Neurohaven"
+                            target="_blank">
+                            <i class="bi bi-whatsapp flex-shrink-0"></i>
+                        </a>
+                        {{-- <a href="#"><i class="bi bi-facebook"></i></a>
                         <a href="#"><i class="bi bi-linkedin"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a> --}}
                     </div>
                 </div>
 
